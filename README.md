@@ -1,59 +1,63 @@
 # DrugDashAngularDjango
 
 #This is Test for Using Django and Angular for the DrugDash App
-
-> $ mkvirtualenv drf-sample
-> $ pip install django==1.8.5
-> $ pip install djangorestframework==3.3.0
-> $ django-admin startproject drf_sample</p>
+<ul>
+ <li>$ mkvirtualenv drf-sample</li>
+ <li>$ pip install django==1.8.5</li>
+ <li>$ pip install djangorestframework==3.3.0</li>
+ <li>$ django-admin startproject drf_sample</li>
+</ul>
 ##We now have a new project folder named drf_sample with the following structure:
 
-> drf_sample/
-> ├── drf_sample
-> │   ├── __init__.py
-> │   ├── settings.py
-> │   ├── urls.py
-> │   └── wsgi.py
-> └── manage.py
+ drf_sample/
+ ├── drf_sample
+ │   ├── __init__.py
+ │   ├── settings.py
+ │   ├── urls.py
+ │   └── wsgi.py
+ └── manage.py
 
 ##Update the Directory Structure
 Let's modify the default project folder structure to support our separate applications. The modified folder structure should look like the following:
 
-> drf_sample/
-> ├── client
-> └── server
->   ├── config
->   │   ├── __init__.py
->   │   ├── settings.py
->   │   └── wsgi.py
->   ├── __init__.py
->   ├── manage.py
->   └── urls.py
+ drf_sample/
+ ├── client
+ └── server
+   ├── config
+   │   ├── __init__.py
+   │   ├── settings.py
+   │   └── wsgi.py
+   ├── __init__.py
+   ├── manage.py
+   └── urls.py
 
 #Fix the Default Module Links
 
 ##In server/config/settings.py
+<blockquote>
+<p>ROOT_URLCONF = 'urls'
+   changes to
+   ROOT_URLCONF = 'server.urls'</p>
+</blockquote>
 
-> ROOT_URLCONF = 'urls'
->>    changes to
-> ROOT_URLCONF = 'server.urls'</p>
-
->  WSGI_APPLICATION = 'wsgi.application'
->>    changes to
->  WSGI_APPLICATION = 'config.wsgi.application'</p>
-
+<blockquote>
+ <p>WSGI_APPLICATION = 'wsgi.application'
+    changes to
+    WSGI_APPLICATION = 'config.wsgi.application'</p>
+</blockquote>
 ##In server/config/wsgi.py
-
->   os.environ.setdefault("DJANGO_SETTINGS_MODULE", "drf_sample.settings")
->>   changes to
->   os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")</p>
-
+<blockquote>
+<p>os.environ.setdefault("DJANGO_SETTINGS_MODULE", "drf_sample.settings")
+   changes to
+   os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")</p>
+</blockquote>
 ##In server/manage.py:
 
->  os.environ.setdefault("DJANGO_SETTINGS_MODULE", "drf_sample.settings")
->>    changes to
->   os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")</p>
-
+<blockquote>
+<p> os.environ.setdefault("DJANGO_SETTINGS_MODULE", "drf_sample.settings")
+   changes to
+   os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")</p>
+</blockquote>
 
 ##$ python server/manage.py runserver
 
